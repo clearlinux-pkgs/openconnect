@@ -1,0 +1,6 @@
+# This file contains pkgconfig build requirements that get picked up
+# but are undesirable. One entry per line, no whitespace.
+libpcsclite
+libproxy-1.0
+libpskc
+stoken
