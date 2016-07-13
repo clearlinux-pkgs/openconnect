@@ -4,3 +4,4 @@ libpcsclite
 libproxy-1.0
 libpskc
 stoken
+uid_wrapper
