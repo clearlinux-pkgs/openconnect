@@ -4,7 +4,7 @@
 #
 Name     : openconnect
 Version  : 7.07
-Release  : 8
+Release  : 9
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.07.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.07.tar.gz
 Summary  : OpenConnect VPN client
