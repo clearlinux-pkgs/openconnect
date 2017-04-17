@@ -2,6 +2,7 @@ libopenconnect.so.5:OPENCONNECT_5.0
 libopenconnect.so.5:OPENCONNECT_5_1
 libopenconnect.so.5:OPENCONNECT_5_2
 libopenconnect.so.5:OPENCONNECT_5_3
+libopenconnect.so.5:OPENCONNECT_5_4
 libopenconnect.so.5:OPENCONNECT_PRIVATE
 libopenconnect.so.5:openconnect_check_peer_cert_hash
 libopenconnect.so.5:openconnect_clear_cookie
@@ -54,6 +55,7 @@ libopenconnect.so.5:openconnect_set_localname
 libopenconnect.so.5:openconnect_set_loglevel
 libopenconnect.so.5:openconnect_set_mobile_info
 libopenconnect.so.5:openconnect_set_option_value
+libopenconnect.so.5:openconnect_set_pass_tos
 libopenconnect.so.5:openconnect_set_pfs
 libopenconnect.so.5:openconnect_set_protect_socket_handler
 libopenconnect.so.5:openconnect_set_protocol

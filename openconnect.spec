@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 7.07
-Release  : 10
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.07.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.07.tar.gz
-Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.07.tar.gz.asc
+Version  : 7.08
+Release  : 11
+URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
+Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
+Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -74,11 +74,11 @@ locales components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-7.07
+%setup -q -n openconnect-7.08
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1492383374
+export SOURCE_DATE_EPOCH=1492436646
 %configure --disable-static --with-vpnc-script==/usr/share/vpnc/vpnc-script
 make V=1  %{?_smp_mflags}
 
@@ -90,7 +90,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492383374
+export SOURCE_DATE_EPOCH=1492436646
 rm -rf %{buildroot}
 %make_install
 %find_lang openconnect
@@ -115,7 +115,7 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libopenconnect.so.5
-/usr/lib64/libopenconnect.so.5.3.0
+/usr/lib64/libopenconnect.so.5.4.0
 
 %files locales -f openconnect.lang
 %defattr(-,root,root,-)
