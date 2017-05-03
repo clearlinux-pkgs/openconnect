@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 7.08
-Release  : 12
+Release  : 13
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz.asc
@@ -17,6 +17,14 @@ Requires: openconnect-bin
 Requires: openconnect-lib
 Requires: openconnect-locales
 Requires: openconnect-doc
+Requires: openconnect-data
+BuildRequires : automake
+BuildRequires : automake-dev
+BuildRequires : gettext-bin
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
+BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(liblz4)
 BuildRequires : pkgconfig(libxml-2.0)
@@ -24,6 +32,7 @@ BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-dev
+Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
 
 %description
 Description:
@@ -33,9 +42,18 @@ demo program to show how it can be used.
 %package bin
 Summary: bin components for the openconnect package.
 Group: Binaries
+Requires: openconnect-data
 
 %description bin
 bin components for the openconnect package.
+
+
+%package data
+Summary: data components for the openconnect package.
+Group: Data
+
+%description data
+data components for the openconnect package.
 
 
 %package dev
@@ -43,6 +61,7 @@ Summary: dev components for the openconnect package.
 Group: Development
 Requires: openconnect-lib
 Requires: openconnect-bin
+Requires: openconnect-data
 Provides: openconnect-devel
 
 %description dev
@@ -60,6 +79,7 @@ doc components for the openconnect package.
 %package lib
 Summary: lib components for the openconnect package.
 Group: Libraries
+Requires: openconnect-data
 
 %description lib
 lib components for the openconnect package.
@@ -75,22 +95,26 @@ locales components for the openconnect package.
 
 %prep
 %setup -q -n openconnect-7.08
+%patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1492436646
-%configure --disable-static --with-vpnc-script==/usr/share/vpnc/vpnc-script
+export SOURCE_DATE_EPOCH=1493821439
+%reconfigure --disable-static --with-vpnc-script=/usr/share/vpnc/vpnc-script
 make V=1  %{?_smp_mflags}
 
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492436646
+export SOURCE_DATE_EPOCH=1493821439
 rm -rf %{buildroot}
 %make_install
 %find_lang openconnect
@@ -101,6 +125,10 @@ rm -rf %{buildroot}
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/openconnect
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/vpnc/vpnc-script
 
 %files dev
 %defattr(-,root,root,-)
