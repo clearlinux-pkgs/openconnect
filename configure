@@ -1,1 +1,1 @@
- --with-vpnc-script==/usr/share/vpnc/vpnc-script
+ --with-vpnc-script=/usr/share/vpnc/vpnc-script
