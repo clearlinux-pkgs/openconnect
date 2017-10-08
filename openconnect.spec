@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 7.08
-Release  : 13
+Release  : 14
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz.asc
@@ -21,12 +21,14 @@ Requires: openconnect-data
 BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : gettext-bin
+BuildRequires : krb5-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
 BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(liblz4)
+BuildRequires : pkgconfig(libproxy-1.0)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
@@ -102,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493821439
+export SOURCE_DATE_EPOCH=1507490916
 %reconfigure --disable-static --with-vpnc-script=/usr/share/vpnc/vpnc-script
 make V=1  %{?_smp_mflags}
 
@@ -114,7 +116,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1493821439
+export SOURCE_DATE_EPOCH=1507490916
 rm -rf %{buildroot}
 %make_install
 %find_lang openconnect
