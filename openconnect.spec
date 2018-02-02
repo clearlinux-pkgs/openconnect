@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 7.08
-Release  : 15
+Release  : 16
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
 Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz.asc
