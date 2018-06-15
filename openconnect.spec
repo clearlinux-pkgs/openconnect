@@ -33,7 +33,7 @@ BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-dev
+
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
 
 %description
