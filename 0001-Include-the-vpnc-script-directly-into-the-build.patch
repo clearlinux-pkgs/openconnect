@@ -26,18 +26,18 @@ index 5df7291..8886c69 100644
  AM_CPPFLAGS = -DLOCALEDIR="\"$(localedir)\""
  
 diff --git a/configure.ac b/configure.ac
-index 5c50cf6..a16355e 100644
+index ac86087..e03cd0d 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -79,7 +79,7 @@ if test "$with_vpnc_script" = "yes" || test "$with_vpnc_script" = ""; then
+@@ -81,7 +81,7 @@ if test "$with_vpnc_script" = "yes" || test "$with_vpnc_script" = ""; then
     if test "$have_win" = "yes"; then
        with_vpnc_script=vpnc-script-win.js
     else
--      with_vpnc_script=/etc/vpnc/vpnc-script
-+      with_vpnc_script=/usr/share/vpnc/vpnc-script
-       if ! test -x "$with_vpnc_script"; then
- 	 AC_MSG_ERROR([${with_vpnc_script} does not seem to be executable.]
-  [OpenConnect will not function correctly without a vpnc-script.]
+-      for with_vpnc_script in /usr/local/share/vpnc-scripts/vpnc-script /usr/local/sbin/vpnc-script /usr/share/vpnc-scripts/vpnc-script /usr/sbin/vpnc-script /etc/vpnc/vpnc-script; do
++      for with_vpnc_script in /usr/share/vpnc/vpnc-script /usr/local/share/vpnc-scripts/vpnc-script /usr/local/sbin/vpnc-script /usr/share/vpnc-scripts/vpnc-script /usr/sbin/vpnc-script /etc/vpnc/vpnc-script; do
+          if test -x "$with_vpnc_script"; then
+             break
+          fi
 diff --git a/vpnc-script b/vpnc-script
 new file mode 100755
 index 0000000..6302987

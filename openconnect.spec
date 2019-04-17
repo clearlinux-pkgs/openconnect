@@ -5,17 +5,18 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 7.08
-Release  : 20
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz
-Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-7.08.tar.gz.asc
+Version  : 8.02
+Release  : 21
+URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
+Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
+Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: openconnect-bin = %{version}-%{release}
 Requires: openconnect-data = %{version}-%{release}
 Requires: openconnect-lib = %{version}-%{release}
+Requires: openconnect-libexec = %{version}-%{release}
 Requires: openconnect-license = %{version}-%{release}
 Requires: openconnect-locales = %{version}-%{release}
 Requires: openconnect-man = %{version}-%{release}
@@ -23,6 +24,7 @@ BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : gettext-bin
 BuildRequires : krb5-dev
+BuildRequires : libgcrypt-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
@@ -30,9 +32,11 @@ BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(liblz4)
 BuildRequires : pkgconfig(libproxy-1.0)
+BuildRequires : pkgconfig(libtasn1)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
+BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-core
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
@@ -46,8 +50,8 @@ demo program to show how it can be used.
 Summary: bin components for the openconnect package.
 Group: Binaries
 Requires: openconnect-data = %{version}-%{release}
+Requires: openconnect-libexec = %{version}-%{release}
 Requires: openconnect-license = %{version}-%{release}
-Requires: openconnect-man = %{version}-%{release}
 
 %description bin
 bin components for the openconnect package.
@@ -68,6 +72,7 @@ Requires: openconnect-lib = %{version}-%{release}
 Requires: openconnect-bin = %{version}-%{release}
 Requires: openconnect-data = %{version}-%{release}
 Provides: openconnect-devel = %{version}-%{release}
+Requires: openconnect = %{version}-%{release}
 
 %description dev
 dev components for the openconnect package.
@@ -77,10 +82,20 @@ dev components for the openconnect package.
 Summary: lib components for the openconnect package.
 Group: Libraries
 Requires: openconnect-data = %{version}-%{release}
+Requires: openconnect-libexec = %{version}-%{release}
 Requires: openconnect-license = %{version}-%{release}
 
 %description lib
 lib components for the openconnect package.
+
+
+%package libexec
+Summary: libexec components for the openconnect package.
+Group: Default
+Requires: openconnect-license = %{version}-%{release}
+
+%description libexec
+libexec components for the openconnect package.
 
 
 %package license
@@ -108,7 +123,7 @@ man components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-7.08
+%setup -q -n openconnect-8.02
 %patch1 -p1
 
 %build
@@ -116,7 +131,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542409623
+export SOURCE_DATE_EPOCH=1555462217
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %reconfigure --disable-static --with-vpnc-script=/usr/share/vpnc/vpnc-script
 make  %{?_smp_mflags}
 
@@ -128,7 +144,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542409623
+export SOURCE_DATE_EPOCH=1555462217
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
@@ -155,7 +171,14 @@ cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libopenconnect.so.5
-/usr/lib64/libopenconnect.so.5.4.0
+/usr/lib64/libopenconnect.so.5.5.0
+
+%files libexec
+%defattr(-,root,root,-)
+/usr/libexec/openconnect/csd-post.sh
+/usr/libexec/openconnect/csd-wrapper.sh
+/usr/libexec/openconnect/hipreport.sh
+/usr/libexec/openconnect/tncc-wrapper.py
 
 %files license
 %defattr(0644,root,root,0755)

@@ -3,5 +3,8 @@ libgnutls.so.30
 liblz4.so.1
 libp11-kit.so.0
 libproxy.so.1
+libtasn1.so.6
+libtss2-esys.so.0
+libtss2-mu.so.0
 libxml2.so.2
 libz.so.1
