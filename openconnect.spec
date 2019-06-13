@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 8.02
-Release  : 22
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
-Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz.asc
+Version  : 8.03
+Release  : 23
+URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz
+Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz
+Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -39,7 +39,6 @@ BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-core
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
 
 %description
@@ -124,7 +123,7 @@ man components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-8.02
+%setup -q -n openconnect-8.03
 %patch1 -p1
 
 %build
@@ -132,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1560441390
+export SOURCE_DATE_EPOCH=1560441667
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -149,7 +148,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1560441390
+export SOURCE_DATE_EPOCH=1560441667
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL

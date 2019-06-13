@@ -1,6 +1,6 @@
-Configure miss: memset_s
-Configure miss: explicit_memset
 Configure miss: fdevname_r
+Configure miss: For memset_s
+Configure miss: explicit_memset
 Configure miss: __android_log_vprint
 Configure miss: __android_log_vprint in -llog
 Configure miss: tss library
@@ -12,8 +12,6 @@ Configure miss: GSSAPI compilation with "-L/usr/lib64 -Wl,--enable-new-dtags -Wl
 Configure miss: if_tun.h usability
 Configure miss: if_tun.h presence
 Configure miss: if_tun.h
-Configure miss: net/if_utun.h usability
-Configure miss: net/if_utun.h presence
 Configure miss: net/if_utun.h
 Configure miss: if groff can create UTF-8 XHTML
 Configure miss: uid_wrapper, socket_wrapper
