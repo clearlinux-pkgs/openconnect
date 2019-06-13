@@ -5,11 +5,11 @@ Configure miss: __android_log_vprint
 Configure miss: __android_log_vprint in -llog
 Configure miss: tss library
 Configure miss: softhsm2-util
-Configure miss: stoken
 Configure miss: libpcsclite
 Configure miss: libpskc >= 2.2.0
 Configure miss: x86_64-generic-linux-gnu-krb5-config
 Configure miss: GSSAPI compilation with "-L/usr/lib64 -Wl,--enable-new-dtags -Wl,-rpath -Wl,/usr/lib64 -lgssapi_krb5 -lkrb5 -lk5crypto -lcom_err"
+Configure miss: if_tun.h usability
 Configure miss: if_tun.h presence
 Configure miss: if_tun.h
 Configure miss: net/if_utun.h usability

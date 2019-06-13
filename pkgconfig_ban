@@ -2,5 +2,4 @@
 # but are undesirable. One entry per line, no whitespace.
 libpcsclite
 libpskc
-stoken
 uid_wrapper

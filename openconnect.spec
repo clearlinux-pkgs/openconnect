@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.02
-Release  : 21
+Release  : 22
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz
 Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.02.tar.gz.asc
@@ -36,6 +36,7 @@ BuildRequires : pkgconfig(libtasn1)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
+BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
 BuildRequires : python-core
@@ -131,8 +132,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555462217
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1560441390
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %reconfigure --disable-static --with-vpnc-script=/usr/share/vpnc/vpnc-script
 make  %{?_smp_mflags}
 
@@ -144,10 +149,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1555462217
+export SOURCE_DATE_EPOCH=1560441390
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
+cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licence.xml
 %make_install
 %find_lang openconnect
 
@@ -183,6 +189,7 @@ cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/openconnect/COPYING.LGPL
+/usr/share/package-licenses/openconnect/www_licence.xml
 
 %files man
 %defattr(0644,root,root,0755)
