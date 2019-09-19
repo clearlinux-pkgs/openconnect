@@ -1,6 +1,4 @@
 libc.so.6
-libdbus-1.so.3
-libgcrypt.so.20
 libgnutls.so.30
 liblz4.so.1
 libp11-kit.so.0
@@ -8,7 +6,5 @@ libproxy.so.1
 libstoken.so.1
 libtasn1.so.6
 libtss2-esys.so.0
-libtss2-mu.so.0
-libtss2-sys.so.0
 libxml2.so.2
 libz.so.1

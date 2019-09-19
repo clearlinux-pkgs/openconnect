@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 8.03
-Release  : 23
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz
-Source99 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.03.tar.gz.asc
+Version  : 8.05
+Release  : 24
+URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
+Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
+Source1 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -20,11 +20,12 @@ Requires: openconnect-libexec = %{version}-%{release}
 Requires: openconnect-license = %{version}-%{release}
 Requires: openconnect-locales = %{version}-%{release}
 Requires: openconnect-man = %{version}-%{release}
+BuildRequires : apache-ant
 BuildRequires : automake
 BuildRequires : automake-dev
+BuildRequires : buildreq-mvn
 BuildRequires : gettext-bin
 BuildRequires : krb5-dev
-BuildRequires : libgcrypt-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
@@ -123,15 +124,15 @@ man components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-8.03
+%setup -q -n openconnect-8.05
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560441667
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568920456
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -141,14 +142,14 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1560441667
+export SOURCE_DATE_EPOCH=1568920456
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
@@ -169,7 +170,7 @@ cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licen
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/openconnect.h
 /usr/lib64/libopenconnect.so
 /usr/lib64/pkgconfig/openconnect.pc
 
@@ -182,6 +183,7 @@ cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licen
 %defattr(-,root,root,-)
 /usr/libexec/openconnect/csd-post.sh
 /usr/libexec/openconnect/csd-wrapper.sh
+/usr/libexec/openconnect/hipreport-android.sh
 /usr/libexec/openconnect/hipreport.sh
 /usr/libexec/openconnect/tncc-wrapper.py
 
