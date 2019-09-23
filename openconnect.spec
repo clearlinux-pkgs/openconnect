@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.05
-Release  : 24
+Release  : 25
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source1 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
@@ -26,6 +26,7 @@ BuildRequires : automake-dev
 BuildRequires : buildreq-mvn
 BuildRequires : gettext-bin
 BuildRequires : krb5-dev
+BuildRequires : libgcrypt-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
@@ -40,6 +41,7 @@ BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
+BuildRequires : python-core
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
 
 %description
@@ -132,7 +134,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568920456
+export SOURCE_DATE_EPOCH=1569275197
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -149,13 +151,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1568920456
+export SOURCE_DATE_EPOCH=1569275197
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
 cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licence.xml
 %make_install
 %find_lang openconnect
+## Remove excluded files
+rm -f %{buildroot}/usr/libexec/openconnect/hipreport-android.sh
 
 %files
 %defattr(-,root,root,-)
@@ -183,7 +187,6 @@ cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licen
 %defattr(-,root,root,-)
 /usr/libexec/openconnect/csd-post.sh
 /usr/libexec/openconnect/csd-wrapper.sh
-/usr/libexec/openconnect/hipreport-android.sh
 /usr/libexec/openconnect/hipreport.sh
 /usr/libexec/openconnect/tncc-wrapper.py
 
