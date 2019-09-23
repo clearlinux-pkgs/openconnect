@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.05
-Release  : 25
+Release  : 26
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source1 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
@@ -20,10 +20,8 @@ Requires: openconnect-libexec = %{version}-%{release}
 Requires: openconnect-license = %{version}-%{release}
 Requires: openconnect-locales = %{version}-%{release}
 Requires: openconnect-man = %{version}-%{release}
-BuildRequires : apache-ant
 BuildRequires : automake
 BuildRequires : automake-dev
-BuildRequires : buildreq-mvn
 BuildRequires : gettext-bin
 BuildRequires : krb5-dev
 BuildRequires : libgcrypt-dev
@@ -134,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569275197
+export SOURCE_DATE_EPOCH=1569276713
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -151,7 +149,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1569275197
+export SOURCE_DATE_EPOCH=1569276713
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
