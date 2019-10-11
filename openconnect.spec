@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.05
-Release  : 26
+Release  : 27
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source1 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
@@ -39,7 +39,6 @@ BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
-BuildRequires : python-core
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
 
 %description
@@ -132,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569276713
+export SOURCE_DATE_EPOCH=1570822117
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -149,11 +148,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1569276713
+export SOURCE_DATE_EPOCH=1570822117
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
-cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/COPYING.LGPL
-cp www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/www_licence.xml
+cp %{_builddir}/openconnect-8.05/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
+cp %{_builddir}/openconnect-8.05/www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/0a97d593c86ba83d8b23ee120e61968217b34a6d
 %make_install
 %find_lang openconnect
 ## Remove excluded files
@@ -190,8 +189,8 @@ rm -f %{buildroot}/usr/libexec/openconnect/hipreport-android.sh
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/openconnect/COPYING.LGPL
-/usr/share/package-licenses/openconnect/www_licence.xml
+/usr/share/package-licenses/openconnect/0a97d593c86ba83d8b23ee120e61968217b34a6d
+/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
 
 %files man
 %defattr(0644,root,root,0755)

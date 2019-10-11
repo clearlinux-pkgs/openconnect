@@ -2,3 +2,4 @@
 # undesirable. One entry per line, no whitespace.
 apache-ant
 buildreq-mvn
+python-core
