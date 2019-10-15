@@ -1,0 +1,66 @@
+From 8339ecf1ef0f5ac2e2bd8e0f822067a527f6de87 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Tue, 15 Oct 2019 10:34:10 -0700
+Subject: [PATCH] python 2 to 3 conversion
+
+---
+ trojans/tncc-wrapper.py | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/trojans/tncc-wrapper.py b/trojans/tncc-wrapper.py
+index 0d4587b..285c488 100755
+--- a/trojans/tncc-wrapper.py
++++ b/trojans/tncc-wrapper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python2
++#!/usr/bin/python
+ 
+ # Lifted from Russ Dill's juniper-vpn-wrap.py, thus:
+ #
+@@ -18,19 +18,19 @@
+ 
+ import subprocess
+ import mechanize
+-import cookielib
++import http.cookiejar
+ import getpass
+ import sys
+ import os
+ import zipfile
+-import urllib
++import urllib.request, urllib.parse, urllib.error
+ import socket
+ import ssl
+ import errno
+ import argparse
+ import atexit
+ import signal
+-import ConfigParser
++import configparser
+ import time
+ import binascii
+ import hmac
+@@ -39,7 +39,7 @@ import hashlib
+ def mkdir_p(path):
+     try:
+         os.mkdir(path)
+-    except OSError, exc:
++    except OSError as exc:
+         if exc.errno == errno.EEXIST and os.path.isdir(path):
+             pass
+         else:
+@@ -64,9 +64,9 @@ class Tncc:
+             if zipfile.ZipFile(self.tncc_jar, 'r').testzip() is not None:
+                 raise Exception()
+         except:
+-            print 'Downloading tncc.jar...'
++            print('Downloading tncc.jar...')
+             mkdir_p(os.path.expanduser('~/.juniper_networks'))
+-            urllib.urlretrieve('https://' + self.vpn_host
++            urllib.request.urlretrieve('https://' + self.vpn_host
+                                + '/dana-cached/hc/tncc.jar', self.tncc_jar)
+ 
+         with zipfile.ZipFile(self.tncc_jar, 'r') as jar:
+-- 
+2.23.0
+

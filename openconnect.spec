@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.05
-Release  : 27
+Release  : 28
 URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
 Source1 : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
@@ -40,6 +40,7 @@ BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
 BuildRequires : pkgconfig(zlib)
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
+Patch2: 0002-python-2-to-3-conversion.patch
 
 %description
 Description:
@@ -125,13 +126,14 @@ man components for the openconnect package.
 %prep
 %setup -q -n openconnect-8.05
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570822117
+export SOURCE_DATE_EPOCH=1571160968
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -148,7 +150,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1570822117
+export SOURCE_DATE_EPOCH=1571160968
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp %{_builddir}/openconnect-8.05/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
