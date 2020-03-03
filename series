@@ -1,2 +1,2 @@
 0001-Include-the-vpnc-script-directly-into-the-build.patch
-0002-python-2-to-3-conversion.patch
+0002-Omit-tncc-python-wrapper-entirely-juniper-vpns-could.patch
