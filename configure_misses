@@ -3,6 +3,7 @@ Configure miss: For memset_s
 Configure miss: explicit_memset
 Configure miss: __android_log_vprint
 Configure miss: __android_log_vprint in -llog
+Configure miss: known-broken versions of GnuTLS
 Configure miss: tss library
 Configure miss: softhsm2-util
 Configure miss: libpcsclite

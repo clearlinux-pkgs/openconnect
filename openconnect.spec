@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 8.05
-Release  : 29
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz
-Source1  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.05.tar.gz.asc
+Version  : 8.10
+Release  : 30
+URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz
+Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz
+Source1  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -24,7 +24,6 @@ BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : gettext-bin
 BuildRequires : krb5-dev
-BuildRequires : libgcrypt-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : m4
@@ -38,9 +37,9 @@ BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(p11-kit-1)
 BuildRequires : pkgconfig(stoken)
 BuildRequires : pkgconfig(tss2-esys)
+BuildRequires : pkgconfig(tss2-mu)
 BuildRequires : pkgconfig(zlib)
 Patch1: 0001-Include-the-vpnc-script-directly-into-the-build.patch
-Patch2: 0002-Omit-tncc-python-wrapper-entirely-juniper-vpns-could.patch
 
 %description
 Description:
@@ -124,21 +123,20 @@ man components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-8.05
-cd %{_builddir}/openconnect-8.05
+%setup -q -n openconnect-8.10
+cd %{_builddir}/openconnect-8.10
 %patch1 -p1
-%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583268119
+export SOURCE_DATE_EPOCH=1595269162
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %reconfigure --disable-static --with-vpnc-script=/usr/share/vpnc/vpnc-script
 make  %{?_smp_mflags}
@@ -151,16 +149,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1583268119
+export SOURCE_DATE_EPOCH=1595269162
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
-cp %{_builddir}/openconnect-8.05/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
-cp %{_builddir}/openconnect-8.05/www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/0a97d593c86ba83d8b23ee120e61968217b34a6d
+cp %{_builddir}/openconnect-8.10/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
+cp %{_builddir}/openconnect-8.10/www/licence.xml %{buildroot}/usr/share/package-licenses/openconnect/0a97d593c86ba83d8b23ee120e61968217b34a6d
 %make_install
 %find_lang openconnect
 ## Remove excluded files
 rm -f %{buildroot}/usr/libexec/openconnect/hipreport-android.sh
 rm -f %{buildroot}/usr/libexec/openconnect/tncc-wrapper.py
+rm -f %{buildroot}/usr/libexec/openconnect/tncc-emulate.py
 
 %files
 %defattr(-,root,root,-)
@@ -171,6 +170,7 @@ rm -f %{buildroot}/usr/libexec/openconnect/tncc-wrapper.py
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/bash-completion/completions/openconnect
 /usr/share/vpnc/vpnc-script
 
 %files dev
@@ -182,7 +182,7 @@ rm -f %{buildroot}/usr/libexec/openconnect/tncc-wrapper.py
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libopenconnect.so.5
-/usr/lib64/libopenconnect.so.5.5.0
+/usr/lib64/libopenconnect.so.5.6.0
 
 %files libexec
 %defattr(-,root,root,-)

@@ -2,3 +2,4 @@
 # names, one per line.
 /usr/libexec/openconnect/hipreport-android.sh
 /usr/libexec/openconnect/tncc-wrapper.py
+/usr/libexec/openconnect/tncc-emulate.py
