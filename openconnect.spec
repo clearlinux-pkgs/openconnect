@@ -6,10 +6,10 @@
 #
 Name     : openconnect
 Version  : 8.10
-Release  : 30
-URL      : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz
-Source0  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz
-Source1  : ftp://ftp.infradead.org/pub/openconnect/openconnect-8.10.tar.gz.asc
+Release  : 31
+URL      : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz
+Source0  : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz
+Source1  : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -132,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595269162
+export SOURCE_DATE_EPOCH=1653533535
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -146,10 +146,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1595269162
+export SOURCE_DATE_EPOCH=1653533535
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp %{_builddir}/openconnect-8.10/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/4df5d4b947cf4e63e675729dd3f168ba844483c7
@@ -157,9 +157,9 @@ cp %{_builddir}/openconnect-8.10/www/licence.xml %{buildroot}/usr/share/package-
 %make_install
 %find_lang openconnect
 ## Remove excluded files
-rm -f %{buildroot}/usr/libexec/openconnect/hipreport-android.sh
-rm -f %{buildroot}/usr/libexec/openconnect/tncc-wrapper.py
-rm -f %{buildroot}/usr/libexec/openconnect/tncc-emulate.py
+rm -f %{buildroot}*/usr/libexec/openconnect/hipreport-android.sh
+rm -f %{buildroot}*/usr/libexec/openconnect/tncc-wrapper.py
+rm -f %{buildroot}*/usr/libexec/openconnect/tncc-emulate.py
 
 %files
 %defattr(-,root,root,-)
