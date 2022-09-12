@@ -6,7 +6,7 @@
 #
 Name     : openconnect
 Version  : 8.10
-Release  : 31
+Release  : 32
 URL      : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz
 Source0  : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz
 Source1  : https://www.infradead.org/openconnect/download/openconnect-8.10.tar.gz.asc
