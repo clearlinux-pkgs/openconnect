@@ -1,17 +1,50 @@
+Configure miss: 32-bit host C ABI
+Configure miss: 32-bit host C ABI
+Configure miss: For hogweed built-in mini-gmp
+Configure miss: For hogweed built-in mini-gmp
 Configure miss: For memset_s
+Configure miss: For memset_s
+Configure miss: Python 3.6+ with Flask module
+Configure miss: Python 3.6+ with Flask module
+Configure miss: Trousers tss library
+Configure miss: Trousers tss library
+Configure miss: __android_log_vprint
 Configure miss: __android_log_vprint
 Configure miss: __android_log_vprint in -llog
+Configure miss: __android_log_vprint in -llog
+Configure miss: create_tpm2_key
+Configure miss: create_tpm2_key
+Configure miss: explicit_memset
 Configure miss: explicit_memset
 Configure miss: fdevname_r
+Configure miss: fdevname_r
+Configure miss: if groff can create UTF-8 XHTML
 Configure miss: if groff can create UTF-8 XHTML
 Configure miss: if_tun.h
+Configure miss: if_tun.h
+Configure miss: json-parser
+Configure miss: json-parser
+Configure miss: known-broken versions of GnuTLS
 Configure miss: known-broken versions of GnuTLS
 Configure miss: libpcsclite
+Configure miss: libpcsclite
+Configure miss: libpskc >= 2.2.0
 Configure miss: libpskc >= 2.2.0
 Configure miss: net/if_utun.h
+Configure miss: net/if_utun.h
+Configure miss: nuttcp
 Configure miss: nuttcp
 Configure miss: softhsm2-util
-Configure miss: tss library
+Configure miss: softhsm2-util
+Configure miss: swtpm
+Configure miss: swtpm
+Configure miss: tpm2tss-genkey
+Configure miss: tpm2tss-genkey
+Configure miss: uid_wrapper, socket_wrapper
 Configure miss: uid_wrapper, socket_wrapper
 Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-krb5-config
+Configure miss: x86_64-generic-linux-gnu-krb5-config
+Configure miss: xdg-open... checking for xdg-open
+Configure miss: xdg-open... checking for xdg-open

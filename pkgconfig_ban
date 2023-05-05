@@ -3,3 +3,4 @@
 libpcsclite
 libpskc
 uid_wrapper
+json-parser
