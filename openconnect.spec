@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x63762CDA67E2F359 (dwmw2@exim.org)
 #
 Name     : openconnect
-Version  : 9.10
-Release  : 33
-URL      : https://www.infradead.org/openconnect/download/openconnect-9.10.tar.gz
-Source0  : https://www.infradead.org/openconnect/download/openconnect-9.10.tar.gz
-Source1  : https://www.infradead.org/openconnect/download/openconnect-9.10.tar.gz.asc
+Version  : 9.11
+Release  : 34
+URL      : https://www.infradead.org/openconnect/download/openconnect-9.11.tar.gz
+Source0  : https://www.infradead.org/openconnect/download/openconnect-9.11.tar.gz
+Source1  : https://www.infradead.org/openconnect/download/openconnect-9.11.tar.gz.asc
 Summary  : OpenConnect VPN client
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1
@@ -125,11 +125,11 @@ man components for the openconnect package.
 
 
 %prep
-%setup -q -n openconnect-9.10
-cd %{_builddir}/openconnect-9.10
+%setup -q -n openconnect-9.11
+cd %{_builddir}/openconnect-9.11
 %patch1 -p1
 pushd ..
-cp -a openconnect-9.10 buildavx2
+cp -a openconnect-9.11 buildavx2
 popd
 
 %build
@@ -137,7 +137,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683300733
+export SOURCE_DATE_EPOCH=1684341103
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -166,7 +166,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1683300733
+export SOURCE_DATE_EPOCH=1684341103
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openconnect
 cp %{_builddir}/openconnect-%{version}/COPYING.LGPL %{buildroot}/usr/share/package-licenses/openconnect/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
