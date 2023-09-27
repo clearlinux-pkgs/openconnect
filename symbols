@@ -7,6 +7,7 @@ libopenconnect.so.5:OPENCONNECT_5_5
 libopenconnect.so.5:OPENCONNECT_5_6
 libopenconnect.so.5:OPENCONNECT_5_7
 libopenconnect.so.5:OPENCONNECT_5_8
+libopenconnect.so.5:OPENCONNECT_5_9
 libopenconnect.so.5:OPENCONNECT_PRIVATE
 libopenconnect.so.5:openconnect_check_peer_cert_hash
 libopenconnect.so.5:openconnect_clear_cookie
